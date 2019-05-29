@@ -9,3 +9,10 @@ deploy:
     project: $FIREBASE_PROJECT
     on:
       branch: master
+  - skip_cleanup: true
+    provider: firebase
+    token:
+      secure: $FIREBASE_TOKEN
+    project: $FIREBASE_PROJECT_STG
+    on:
+      branch: dev
