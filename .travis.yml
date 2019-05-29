@@ -1,0 +1,7 @@
+language: node_js
+before_deploy: npm run build
+deploy:
+  provider: firebase
+  token:
+    secure: $FIREBASE_TOKEN
+  project: $FIREBASE_PROJECT
