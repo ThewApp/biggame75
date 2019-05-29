@@ -11,6 +11,7 @@ deploy:
     project: $FIREBASE_PROJECT
     on:
       branch: master
+      node_js: lts/*
   - skip_cleanup: true
     provider: firebase
     token:
@@ -18,3 +19,4 @@ deploy:
     project: $FIREBASE_PROJECT_STG
     on:
       branch: dev
+      node_js: lts/*
