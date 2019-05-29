@@ -4,7 +4,8 @@ node_js:
   - node
 before_deploy: npm run build
 deploy:
-  - skip_cleanup: true
+  - name: prod
+    skip_cleanup: true
     provider: firebase
     token:
       secure: $FIREBASE_TOKEN
@@ -12,7 +13,8 @@ deploy:
     on:
       branch: master
       node_js: lts/*
-  - skip_cleanup: true
+  - name: stg
+    skip_cleanup: true
     provider: firebase
     token:
       secure: $FIREBASE_TOKEN
