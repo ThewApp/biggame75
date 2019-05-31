@@ -9,4 +9,5 @@ test("displays ErrorPage", () => {
 
   getByText("Oops! Something went wrong.");
   getByText("Please contact Thew.");
+  expect(document.title).toBe("Oops! Something went wrong.");
 });

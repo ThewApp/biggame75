@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
 function ErrorPage() {
   const classes = useStyles();
 
+  document.title = "Oops! Something went wrong.";
+
   return (
     <Grid
       container
