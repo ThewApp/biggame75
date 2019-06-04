@@ -16,7 +16,8 @@
     "typescript": "3.4.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently npm:react-start \"firebase serve\"",
+    "react-start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,6 +38,8 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^8.0.1"
-  }
+    "@testing-library/react": "^8.0.1",
+    "concurrently": "^4.1.0"
+  },
+  "proxy": "http://localhost:5000"
 }
