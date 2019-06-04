@@ -46,14 +46,14 @@ function Items() {
   const keys = Object.keys(itemsData);
 
   return (
-    <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}>
+    <Grid container className={classes.root} spacing={2} direction="column">
+      <Grid item>
         <Typography className={classes.title} variant="h4" align="center">
           Available Items
         </Typography>
       </Grid>
       {keys.map((key: string) => (
-        <Grid item xs={12} key={key}>
+        <Grid item key={key}>
           <Card
             className={clsx(classes.card, {
               [classes.inactive]: !itemsData[key].availability
