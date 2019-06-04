@@ -1,7 +1,7 @@
 import React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Items from "../components/Items";
+import Items from "../components/ItemsStatus";
 import HousesStatus from "../components/HousesStatus";
 import { ItemsProvider } from "../contexts/Items";
 import { HousesProvider } from "../contexts/Houses";

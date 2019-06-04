@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import Items from "./Items";
+import Items from "./ItemsStatus";
 import { useItems } from "../contexts/Items";
 
 jest.mock("../contexts/Items", () => ({
