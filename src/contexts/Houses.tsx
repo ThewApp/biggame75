@@ -2,11 +2,11 @@ import React from "react";
 
 import defaultData from "../defaultData.json";
 
-declare const firebase: typeof import("./firebase");
+declare const firebase: typeof import("firebase");
 const db = firebase.firestore().collection("houses");
 const defaultHousesData: houses = defaultData.houses;
 
-const HousesContext = React.createContext<any>(undefined);
+const HousesContext = React.createContext<houses>([]);
 
 type houses = house[];
 

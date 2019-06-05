@@ -2,11 +2,11 @@ import React from "react";
 
 import defaultData from "../defaultData.json";
 
-declare const firebase: typeof import("./firebase");
+declare const firebase: typeof import("firebase");
 const db = firebase.firestore();
 const defaultItemsData: items = defaultData.items
 
-const ItemsContext = React.createContext<any>(undefined);
+const ItemsContext = React.createContext<items>({});
 
 interface items {
   [name: string]: item
