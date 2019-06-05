@@ -13,7 +13,6 @@ type houses = house[];
 interface house {
   index: number;
   name: string;
-  balance: number;
   blood: number;
 }
 

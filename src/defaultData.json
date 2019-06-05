@@ -33,73 +33,61 @@
     {
       "index": 1,
       "name": "Minions",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 2,
       "name": "Lotso Bear",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 3,
       "name": "Harley Quinn",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 4,
       "name": "Jerry",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 5,
       "name": "Maleficent",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 6,
       "name": "Jack Sparrow",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 7,
       "name": "The Criminal",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 8,
       "name": "Lord Voldemort",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 9,
       "name": "No Face",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 10,
       "name": "Wreck-It Ralph",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 11,
       "name": "Sergeant Kororo",
-      "balance": 0,
       "blood": 2000
     },
     {
       "index": 12,
       "name": "Evil Queen",
-      "balance": 0,
       "blood": 2000
     }
   ]

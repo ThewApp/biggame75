@@ -27,13 +27,11 @@ test("render non-empty", () => {
     {
       index: 1,
       name: "Minions",
-      balance: 0,
       blood: 100
     },
     {
       index: 2,
       name: "Lotso Bear",
-      balance: 0,
       blood: 100
     }
   ]);
@@ -50,13 +48,11 @@ test("rerender non-empty", () => {
     {
       index: 1,
       name: "Minions",
-      balance: 0,
       blood: 100
     },
     {
       index: 2,
       name: "Lotso Bear",
-      balance: 0,
       blood: 100
     }
   ]);

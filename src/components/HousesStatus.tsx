@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     card: { height: "100%" },
     houseName: {},
-    houseBalance: {},
     houseBlood: {}
   })
 );
@@ -39,13 +38,6 @@ function HousesStatus() {
               align="center"
             >
               {house.name}
-            </Typography>
-            <Typography
-              variant="body1"
-              align="center"
-              className={classes.houseBalance}
-            >
-              Balance: {house.balance}
             </Typography>
             <Typography
               variant="body1"
