@@ -1,9 +1,9 @@
 import React from "react";
+import { db } from "../firebase";
 
 import defaultData from "../defaultData.json";
 
-declare const firebase: typeof import("firebase");
-const db = firebase.firestore();
+const itemsDB = db.collection("items");
 const defaultItemsData: items = defaultData.items
 
 const ItemsContext = React.createContext<items>({});
@@ -24,12 +24,12 @@ function ItemsProvider(props: { children: React.ReactNode }) {
   const [ItemsState, setItemsState] = React.useState({});
 
   React.useEffect(() => {
-    return db.collection("items").orderBy("index").onSnapshot(function(querySnapshot) {
+    return itemsDB.orderBy("index").onSnapshot(function(querySnapshot) {
       // Initialize items with defaultData.json if firebase collection is empty
       if (querySnapshot.empty) {
         const keys = Object.keys(defaultItemsData);
         keys.forEach(key => {
-          db.collection("items")
+          itemsDB
             .doc(key)
             .set(defaultItemsData[key]);
         });
