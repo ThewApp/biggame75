@@ -14,7 +14,13 @@ jest.mock("./contexts/Houses", () => {
   return {
     HousesProvider: (props: { children: React.ReactNodeArray }) =>
       props.children,
-    useHouses: () => ([])
+    useHouses: () => []
+  };
+});
+
+jest.mock("./firebase", () => {
+  return {
+    db: jest.fn()
   };
 });
 
