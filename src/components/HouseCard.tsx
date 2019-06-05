@@ -1,7 +1,8 @@
 import React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import Card, {CardProps} from "@material-ui/core/Card";
+import Card, { CardProps } from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,10 +19,10 @@ interface houseCardProps extends CardProps {
   };
 }
 
-function HouseCard({ house, ...props }: houseCardProps) {
+function HouseCard({ house, className, ...props }: houseCardProps) {
   const classes = useStyles();
   return (
-    <Card {...props}>
+    <Card className={clsx(className, classes.root)} {...props}>
       <Typography
         className={classes.houseName}
         variant="body2"
