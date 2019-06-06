@@ -4,12 +4,12 @@ import { db } from "../firebase";
 import defaultData from "../defaultData.json";
 
 const itemsDB = db.collection("items");
-const defaultItemsData: items = defaultData.items
+const defaultItemsData: items = defaultData.items;
 
 const ItemsContext = React.createContext<items>({});
 
 interface items {
-  [name: string]: item
+  [name: string]: item;
 }
 
 interface item {
@@ -18,7 +18,8 @@ interface item {
   damage: number;
   sideDamage: number | null;
   availability: boolean;
-};
+  img: string;
+}
 
 function ItemsProvider(props: { children: React.ReactNode }) {
   const [ItemsState, setItemsState] = React.useState({});
@@ -29,9 +30,7 @@ function ItemsProvider(props: { children: React.ReactNode }) {
       if (querySnapshot.empty) {
         const keys = Object.keys(defaultItemsData);
         keys.forEach(key => {
-          itemsDB
-            .doc(key)
-            .set(defaultItemsData[key]);
+          itemsDB.doc(key).set(defaultItemsData[key]);
         });
       }
       // Get Items from firebase
@@ -50,7 +49,7 @@ function ItemsProvider(props: { children: React.ReactNode }) {
 }
 
 function useItems() {
-  return React.useContext(ItemsContext) as items
+  return React.useContext(ItemsContext) as items;
 }
 
 export { ItemsProvider, useItems };

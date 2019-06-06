@@ -14,6 +14,7 @@ interface house {
   index: number;
   name: string;
   blood: number;
+  img: string;
 }
 
 function HousesProvider(props: { children: React.ReactNode }) {
