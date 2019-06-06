@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       }
     },
     itemImageWrapper: {
-      flex: "0 3 auto",
+      flex: "0 2 130px",
       backgroundColor: "white",
       padding: theme.spacing(1),
       display: "flex",
