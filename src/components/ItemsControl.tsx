@@ -3,7 +3,6 @@ import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ItemCard from "./ItemCard";
 import Typography from "@material-ui/core/Typography";
-import { db } from "../firebase";
 
 import { useItems } from "../contexts/Items";
 
