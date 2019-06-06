@@ -28,57 +28,55 @@ const mockedUseHouses = useHouses as jest.Mock;
 const mockedUseItems = useItems as jest.Mock;
 const mockedRunTransaction = (db.runTransaction as unknown) as jest.Mock;
 
-beforeEach(() => {
-  mockedUseHouses.mockReturnValue([
-    {
-      index: 1,
-      name: "Minions",
-      blood: 2000
-    },
-    {
-      index: 2,
-      name: "Lotso Bear",
-      blood: 2000
-    },
-    {
-      index: 3,
-      name: "Harley Quinn",
-      blood: 2000
-    },
-    {
-      index: 4,
-      name: "Jerry",
-      blood: 2000
-    },
-    {
-      index: 5,
-      name: "Maleficent",
-      blood: 2000
-    }
-  ]);
-  mockedUseItems.mockReturnValue({
-    sword: {
-      index: 1,
-      price: 6000,
-      damage: 200,
-      sideDamage: null,
-      availability: true
-    },
-    bomb: {
-      index: 2,
-      price: 6500,
-      damage: 150,
-      sideDamage: 100,
-      availability: true
-    },
-    gun: {
-      index: 3,
-      price: 3500,
-      damage: 100,
-      sideDamage: null,
-      availability: false
-    }
-  });
+mockedUseHouses.mockReturnValue([
+  {
+    index: 1,
+    name: "Minions",
+    blood: 2000
+  },
+  {
+    index: 2,
+    name: "Lotso Bear",
+    blood: 2000
+  },
+  {
+    index: 3,
+    name: "Harley Quinn",
+    blood: 2000
+  },
+  {
+    index: 4,
+    name: "Jerry",
+    blood: 2000
+  },
+  {
+    index: 5,
+    name: "Maleficent",
+    blood: 2000
+  }
+]);
+mockedUseItems.mockReturnValue({
+  sword: {
+    index: 1,
+    price: 6000,
+    damage: 200,
+    sideDamage: null,
+    availability: true
+  },
+  bomb: {
+    index: 2,
+    price: 6500,
+    damage: 150,
+    sideDamage: 100,
+    availability: true
+  },
+  gun: {
+    index: 3,
+    price: 3500,
+    damage: 100,
+    sideDamage: null,
+    availability: false
+  }
 });
 
 afterEach(() => {
