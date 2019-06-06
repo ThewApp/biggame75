@@ -5,8 +5,6 @@ import Items from "../components/ItemsStatus";
 import HousesStatus from "../components/HousesStatus";
 import { ItemsProvider } from "../contexts/Items";
 import { HousesProvider } from "../contexts/Houses";
-// import Paper from "@material-ui/core/Paper";
-// import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
