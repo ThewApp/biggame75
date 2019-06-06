@@ -63,6 +63,7 @@ function HouseSelector(props: {
                   (props.selected === length && house.index === 1)),
               disabled: props.disabled.includes(house.index)
             })}
+            tabIndex={!props.disabled.includes(house.index) ? 0 : undefined}
             onClick={() => {
               if (!props.disabled.includes(house.index)) {
                 props.handleSelect(house.index);

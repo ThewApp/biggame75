@@ -31,24 +31,27 @@ test("renders many items", () => {
       price: 6000,
       damage: 200,
       sideDamage: null,
-      availability: true
+      availability: true,
+      img: "sword.jpg"
     },
     bomb: {
       index: 2,
       price: 6500,
       damage: 150,
       sideDamage: 100,
-      availability: false
+      availability: false,
+      img: "bomb.jpg"
     },
     gun: {
       index: 3,
       price: 3500,
       damage: 100,
       sideDamage: null,
-      availability: false
+      availability: false,
+      img: "gun.jpg"
     }
   });
-  const { getByText } = render(
+  const { getByText, getAllByText } = render(
     <ItemSelector selected={null} handleSelect={handleSelect} />
   );
 
@@ -56,6 +59,7 @@ test("renders many items", () => {
   expect(handleSelect.mock.calls.length).toBe(0);
   getByText("bomb");
   getByText(/(?<!Side )Damage:\s+-100/);
+  expect(getAllByText(/Side Damage:\s+0/).length).toBe(2)
 });
 
 test("selects item", () => {
@@ -66,21 +70,24 @@ test("selects item", () => {
       price: 6000,
       damage: 200,
       sideDamage: null,
-      availability: true
+      availability: true,
+      img: "sword.jpg"
     },
     bomb: {
       index: 2,
       price: 6500,
       damage: 150,
       sideDamage: 100,
-      availability: false
+      availability: false,
+      img: "bomb.jpg"
     },
     gun: {
       index: 3,
       price: 3500,
       damage: 100,
       sideDamage: null,
-      availability: false
+      availability: false,
+      img: "gun.jpg"
     }
   });
   const { getByText, rerender } = render(

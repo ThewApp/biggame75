@@ -14,11 +14,6 @@ const useStyles = makeStyles((theme: Theme) =>
       cursor: "pointer",
       "&.active": {
         backgroundColor: theme.palette.primary.light
-      },
-      "&.disabled": {
-        backgroundColor: theme.palette.grey[300],
-        opacity: 0.7,
-        cursor: "not-allowed"
       }
     }
   })
@@ -39,13 +34,13 @@ function ItemSelector(props: {
   return (
     <Grid container spacing={1} className={classes.root}>
       {keys.map(key => (
-        <Grid item xs={6} sm key={key} className={classes.item}>
+        <Grid item xs={6} lg key={key} className={classes.item}>
           <ItemCard
             item={{ ...itemsData[key], name: key }}
             className={clsx(classes.card, {
-              active: key === props.selected,
-              disabled: !itemsData[key].availability
+              active: key === props.selected
             })}
+            tabIndex={itemsData[key].availability ? 0 : undefined}
             onClick={() => {
               if (itemsData[key].availability) {
                 props.handleSelect(key);

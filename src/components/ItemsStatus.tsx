@@ -32,7 +32,7 @@ function Items() {
       </Grid>
       {keys.map((key: string) => (
         <Grid item key={key}>
-          <ItemCard item={{...itemsData[key], name: key}} />
+          <ItemCard mask item={{...itemsData[key], name: key}} />
         </Grid>
       ))}
     </Grid>
