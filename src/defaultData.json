@@ -5,90 +5,106 @@
       "price": 6000,
       "damage": 200,
       "sideDamage": null,
-      "availability": true
+      "availability": true,
+      "img": "sword.jpg"
     },
     "bomb": {
       "index": 2,
       "price": 6500,
       "damage": 150,
       "sideDamage": 100,
-      "availability": false
+      "availability": false,
+      "img": "bomb.jpg"
     },
     "gun": {
       "index": 3,
       "price": 3500,
       "damage": 100,
       "sideDamage": null,
-      "availability": false
+      "availability": false,
+      "img": "gun.jpg"
     },
     "short knife": {
       "index": 4,
       "price": 2000,
       "damage": 50,
       "sideDamage": null,
-      "availability": true
+      "availability": true,
+      "img": "shortKnife.jpg"
     }
   },
   "houses": [
     {
       "index": 1,
       "name": "Minions",
-      "blood": 2000
+      "blood": 2000,
+      "img": "minions.jpg"
     },
     {
       "index": 2,
       "name": "Lotso Bear",
-      "blood": 2000
+      "blood": 2000,
+      "img": "lotso.jpg"
     },
     {
       "index": 3,
       "name": "Harley Quinn",
-      "blood": 2000
+      "blood": 2000,
+      "img": "harley.jpg"
     },
     {
       "index": 4,
       "name": "Jerry",
-      "blood": 2000
+      "blood": 2000,
+      "img": "jerry.jpg"
     },
     {
       "index": 5,
       "name": "Maleficent",
-      "blood": 2000
+      "blood": 2000,
+      "img": "maleficent.jpg"
     },
     {
       "index": 6,
       "name": "Jack Sparrow",
-      "blood": 2000
+      "blood": 2000,
+      "img": "jack.jpg"
     },
     {
       "index": 7,
       "name": "The Criminal",
-      "blood": 2000
+      "blood": 2000,
+      "img": "criminal.jpg"
     },
     {
       "index": 8,
       "name": "Lord Voldemort",
-      "blood": 2000
+      "blood": 2000,
+      "img": "voldemort.jpg"
     },
     {
       "index": 9,
       "name": "No Face",
-      "blood": 2000
+      "blood": 2000,
+      "img": "noFace.jpg"
     },
     {
       "index": 10,
       "name": "Wreck-It Ralph",
-      "blood": 2000
+      "blood": 2000,
+      "img": "wreckIt.jpg"
     },
     {
       "index": 11,
       "name": "Sergeant Kororo",
-      "blood": 2000
+      "blood": 2000,
+      "img": "kororo.jpg"
     },
     {
       "index": 12,
       "name": "Evil Queen",
-      "blood": 2000
+      "blood": 2000,
+      "img": "evilQueen.jpg"
     }
   ]
 }
