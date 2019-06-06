@@ -1,8 +1,7 @@
 import React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
+import ItemCard from "./ItemCard";
 import clsx from "clsx";
 import { useItems } from "../contexts/Items";
 
@@ -21,13 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         opacity: 0.7,
         cursor: "not-allowed"
       }
-    },
-    itemName: {
-      textTransform: "capitalize"
-    },
-    itemPrice: {},
-    itemDamage: {},
-    itemSideDamage: {}
+    }
   })
 );
 
@@ -47,7 +40,8 @@ function ItemSelector(props: {
     <Grid container spacing={1} className={classes.root}>
       {keys.map(key => (
         <Grid item xs={6} sm key={key} className={classes.item}>
-          <Card
+          <ItemCard
+            item={{ ...itemsData[key], name: key }}
             className={clsx(classes.card, {
               active: key === props.selected,
               disabled: !itemsData[key].availability
@@ -57,39 +51,7 @@ function ItemSelector(props: {
                 props.handleSelect(key);
               }
             }}
-          >
-            <Typography
-              className={classes.itemName}
-              variant="body2"
-              gutterBottom
-              align="center"
-            >
-              {key}
-            </Typography>
-            <Typography
-              variant="body2"
-              align="center"
-              className={classes.itemPrice}
-            >
-              Price: {itemsData[key].price}
-            </Typography>
-            <Typography
-              variant="body2"
-              align="center"
-              className={classes.itemDamage}
-            >
-              Damage: -{itemsData[key].damage}
-            </Typography>
-            <Typography
-              variant="body2"
-              align="center"
-              className={classes.itemSideDamage}
-            >
-              Side Damage:{" "}
-              {(itemsData[key].sideDamage && "-" + itemsData[key].sideDamage) ||
-                0}
-            </Typography>
-          </Card>
+          />
         </Grid>
       ))}
     </Grid>
