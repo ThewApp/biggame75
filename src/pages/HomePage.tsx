@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function ErrorPage() {
+function HomePage() {
   const classes = useStyles();
 
   document.title = "HomePage";
@@ -38,4 +38,4 @@ function ErrorPage() {
   );
 }
 
-export default ErrorPage;
+export default HomePage;
