@@ -27,7 +27,7 @@ interface attackingState {
 function AttackPage() {
   const classes = useStyles();
 
-  document.title = "Attack";
+  document.title = "Attack | FreshyGame";
 
   const [attacking, setAttacking] = React.useState<attackingState>({
     attacker: null,

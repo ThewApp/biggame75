@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
 function HomePage() {
   const classes = useStyles();
 
-  document.title = "HomePage";
+  document.title = "HomePage | Freshy Game";
 
   return (
     <ItemsProvider>
