@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
-      alignItems: "stretch"
-    },
-    disabled: {
-      opacity: 0.3,
-      cursor: "not-allowed"
+      alignItems: "stretch",
+      "&.disabled, & .disabled": {
+        opacity: 0.3,
+        cursor: "not-allowed"
+      }
     },
     itemImageWrapper: {
       flex: "0 2 130px",
@@ -88,13 +88,13 @@ function ItemCard({
   return (
     <Card
       className={clsx(className, classes.root, {
-        [classes.disabled]: !item.availability && !editable
+        disabled: !item.availability && !editable
       })}
       {...props}
     >
       <div
         className={clsx(classes.itemImageWrapper, {
-          [classes.disabled]: !item.availability && editable
+          disabled: !item.availability && editable
         })}
       >
         <CardMedia
@@ -107,7 +107,7 @@ function ItemCard({
       <div className={classes.itemDetails}>
         <CardContent
           className={clsx(classes.itemContent, {
-            [classes.disabled]: !item.availability && editable
+            disabled: !item.availability && editable
           })}
         >
           <Typography
