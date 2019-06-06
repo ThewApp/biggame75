@@ -18,11 +18,7 @@ jest.mock("./contexts/Houses", () => {
   };
 });
 
-jest.mock("./firebase", () => {
-  return {
-    db: jest.fn()
-  };
-});
+jest.mock("./firebase", () => ({}));
 
 it("renders without crashing", () => {
   const div = document.createElement("div");

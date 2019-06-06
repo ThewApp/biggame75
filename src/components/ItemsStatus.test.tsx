@@ -7,6 +7,8 @@ jest.mock("../contexts/Items", () => ({
   useItems: jest.fn()
 }));
 
+jest.mock("../firebase", () => ({}));
+
 const mockedUseItems = useItems as jest.Mock;
 
 afterEach(() => {
