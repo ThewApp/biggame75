@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 function HousesControl() {
   const classes = useStyles();
 
-  const housessData = useHouses();
+  const housesData = useHouses();
 
   return (
     <Grid container className={classes.root} spacing={2}>
@@ -29,7 +29,7 @@ function HousesControl() {
           Control Baan
         </Typography>
       </Grid>
-      {housessData.map(house => (
+      {housesData.map(house => (
         <Grid item xs={12} md={6} lg={3} key={house.index}>
           <HouseCard editable house={house} className={classes.card} />
         </Grid>

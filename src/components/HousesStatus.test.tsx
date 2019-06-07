@@ -9,6 +9,8 @@ jest.mock("../contexts/Houses", () => ({
 
 const mockedUseHouses = useHouses as jest.Mock;
 
+jest.mock("../firebase", () => ({}));
+
 afterEach(() => {
   mockedUseHouses.mockClear();
   cleanup();

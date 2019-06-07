@@ -9,6 +9,8 @@ jest.mock("../contexts/Houses", () => ({
 
 const mockedUseHouses = useHouses as jest.Mock;
 
+jest.mock("../firebase", () => ({}));
+
 afterEach(() => {
   mockedUseHouses.mockClear();
   cleanup();
@@ -56,7 +58,7 @@ test("renders many houses", () => {
   expect(mockedUseHouses.mock.calls.length).toBe(1);
   expect(handleSelect.mock.calls.length).toBe(0);
   getByText("Minions");
-  getByText(/Blood:\s+1900/);
+  getByText("1900");
 });
 
 test("selects house", () => {

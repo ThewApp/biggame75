@@ -109,7 +109,7 @@ test("render results", () => {
   expect(mockedUseItems.mock.calls.length).toBe(1);
   expect(mockedRunTransaction.mock.calls.length).toBe(0);
   getByText("Maleficent");
-  getByText(/1900\/2000/);
+  getByText("1900");
   getByText("Jerry");
   getByText("Minions");
   getByText("Attack Now");
@@ -124,10 +124,10 @@ test("attack", async () => {
   expect(mockedUseItems.mock.calls.length).toBe(1);
   expect(mockedRunTransaction.mock.calls.length).toBe(0);
   getByText("Maleficent");
-  getByText(/1850\/2000/);
+  getByText("1850");
   getByText("Jerry");
   getByText("Minions");
-  getAllByText(/1900\/2000/);
+  getAllByText("1900");
   getByText("Attack Now");
   expect(mockedRunTransaction.mock.calls.length).toBe(0);
 
@@ -173,10 +173,10 @@ test("attack", async () => {
   rerender(<AttackLauncher attacker={1} defender={5} item={"bomb"} />);
 
   getByText("Maleficent");
-  getByText(/1700\/2000/);
-  expect(queryByText(/1900\/2000/)).toBe(null);
+  await waitForElement(() => getByText("1700"));
+  expect(queryByText("1900")).toBe(null);
   getByText("Jerry");
   getByText("Minions");
-  getAllByText(/1800\/2000/);
+  getAllByText("1800");
   getByText("Attack Now");
 });
