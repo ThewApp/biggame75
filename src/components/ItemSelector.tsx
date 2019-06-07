@@ -16,22 +16,16 @@ const useStyles = makeStyles((theme: Theme) =>
       width: `calc(100% - ${theme.spacing(1)}px)`,
       height: `calc(100% - ${theme.spacing(1)}px)`,
       borderRadius: theme.shape.borderRadius,
-      opacity: 0.3,
+      opacity: 0.6,
       pointerEvents: "none",
       zIndex: 10,
       "&.active": {
-        backgroundColor: theme.palette.primary.light
-      },
-      "&.side": {
-        backgroundColor: theme.palette.secondary.light
+        backgroundColor: theme.palette.primary.main
       }
     },
     card: {
       height: "100%",
-      cursor: "pointer",
-      "&.active": {
-        backgroundColor: theme.palette.primary.light
-      }
+      cursor: "pointer"
     }
   })
 );
