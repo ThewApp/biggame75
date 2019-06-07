@@ -60,6 +60,7 @@ interface houseCardProps extends CardProps {
   };
   noImage?: boolean;
   editable?: boolean;
+  newBlood?: number;
 }
 
 function HouseCard({
@@ -67,6 +68,7 @@ function HouseCard({
   className,
   noImage,
   editable,
+  newBlood,
   ...props
 }: houseCardProps) {
   const classes = useStyles();
@@ -85,9 +87,12 @@ function HouseCard({
   });
 
   const bloodSpring = useSpring({
-    number: house.blood,
-    from: { number: bloodRef.current ? bloodRef.current : house.blood },
-    config: { friction: 100, mass: 3 }
+    number: newBlood || house.blood,
+    from: {
+      number: bloodRef.current && typeof newBlood === "undefined" ? bloodRef.current : house.blood
+    },
+    config: { friction: 100, mass: 3 },
+    reset: typeof newBlood !== "undefined"
   });
 
   function handleOpenDialog() {

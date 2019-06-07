@@ -109,7 +109,8 @@ function AttackLauncher(props: {
           </Typography>
           <HouseCard
             className={classes.card}
-            house={{ ...leftDefenderData, blood: leftDefenderBlood }}
+            house={leftDefenderData}
+            newBlood={leftDefenderBlood}
           />
         </Grid>
         <Grid item xs={12} sm={4} md={12} lg={4}>
@@ -118,7 +119,8 @@ function AttackLauncher(props: {
           </Typography>
           <HouseCard
             className={classes.card}
-            house={{ ...defenderData, blood: defenderBlood }}
+            house={defenderData}
+            newBlood={defenderBlood}
           />
         </Grid>
         <Grid item xs={12} sm={4} md={12} lg={4}>
@@ -127,7 +129,8 @@ function AttackLauncher(props: {
           </Typography>
           <HouseCard
             className={classes.card}
-            house={{ ...rightDefenderData, blood: rightDefenderBlood }}
+            house={rightDefenderData }
+            newBlood={rightDefenderBlood}
           />
         </Grid>
         <Grid item xs={12}>

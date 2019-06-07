@@ -101,7 +101,7 @@ test("render blank", () => {
   getByText("Not enough information.");
 });
 
-test("render results", () => {
+test("render results", async () => {
   const { getByText } = render(
     <AttackLauncher attacker={1} defender={5} item={"gun"} />
   );
@@ -109,7 +109,7 @@ test("render results", () => {
   expect(mockedUseItems.mock.calls.length).toBe(1);
   expect(mockedRunTransaction.mock.calls.length).toBe(0);
   getByText("Maleficent");
-  getByText("1900");
+  await waitForElement(() => getByText("1900"));
   getByText("Jerry");
   getByText("Minions");
   getByText("Attack Now");
@@ -123,14 +123,6 @@ test("attack", async () => {
   expect(mockedUseHouses.mock.calls.length).toBe(1);
   expect(mockedUseItems.mock.calls.length).toBe(1);
   expect(mockedRunTransaction.mock.calls.length).toBe(0);
-  getByText("Maleficent");
-  getByText("1850");
-  getByText("Jerry");
-  getByText("Minions");
-  getAllByText("1900");
-  getByText("Attack Now");
-  expect(mockedRunTransaction.mock.calls.length).toBe(0);
-
   fireEvent.click(getByText("Attack Now"));
 
   expect(mockedRunTransaction.mock.calls.length).toBe(1);
