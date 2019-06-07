@@ -8,7 +8,24 @@ import { useItems } from "../contexts/Items";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: { marginBottom: theme.spacing(2) },
-    item: {},
+    item: {
+      position: "relative"
+    },
+    cardOverlay: {
+      position: "absolute",
+      width: `calc(100% - ${theme.spacing(1)}px)`,
+      height: `calc(100% - ${theme.spacing(1)}px)`,
+      borderRadius: theme.shape.borderRadius,
+      opacity: 0.3,
+      pointerEvents: "none",
+      zIndex: 10,
+      "&.active": {
+        backgroundColor: theme.palette.primary.light
+      },
+      "&.side": {
+        backgroundColor: theme.palette.secondary.light
+      }
+    },
     card: {
       height: "100%",
       cursor: "pointer",
@@ -35,11 +52,14 @@ function ItemSelector(props: {
     <Grid container spacing={1} className={classes.root}>
       {keys.map(key => (
         <Grid item xs={6} lg key={key} className={classes.item}>
-          <ItemCard
-            item={{ ...itemsData[key], name: key }}
-            className={clsx(classes.card, {
+          <div
+            className={clsx(classes.cardOverlay, {
               active: key === props.selected
             })}
+          />
+          <ItemCard
+            item={{ ...itemsData[key], name: key }}
+            className={classes.card}
             tabIndex={itemsData[key].availability ? 0 : undefined}
             onClick={() => {
               if (itemsData[key].availability) {

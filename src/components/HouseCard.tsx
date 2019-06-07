@@ -12,8 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: "flex",
       flexDirection: "column",
-    },
-    headerWrapper: {
+      justifyContent: "center",
       position: "relative"
     },
     bloodBar: {
@@ -21,13 +20,13 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       height: theme.spacing(1),
       backgroundColor: "pink",
-      zIndex: 0
+      top: 0
     },
     remainingBloodBar: {
       height: "100%",
       backgroundColor: "red"
     },
-    header: { position: "relative" },
+    header: {},
     avatar: {},
     mediaWrapper: {
       flexGrow: 1,
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
       objectFit: "contain",
       maxHeight: 130
-    },
+    }
   })
 );
 
@@ -48,10 +47,17 @@ interface houseCardProps extends CardProps {
     blood: number;
     img: string;
   };
+  noImage?: boolean;
   editable?: boolean;
 }
 
-function HouseCard({ house, className, editable, ...props }: houseCardProps) {
+function HouseCard({
+  house,
+  className,
+  noImage,
+  editable,
+  ...props
+}: houseCardProps) {
   const classes = useStyles();
   const [imagePath, setImagePath] = React.useState(".");
   React.useEffect(() => {
@@ -59,24 +65,27 @@ function HouseCard({ house, className, editable, ...props }: houseCardProps) {
   }, [house.img]);
   return (
     <Card className={clsx(className, classes.root)} {...props}>
-      <div className={classes.headerWrapper}>
-        <div className={classes.bloodBar}>
-          <div
-            className={classes.remainingBloodBar}
-            style={{ width: `${house.blood / 2000 * 100}%` }}
-          />
-        </div>
-        <CardHeader
-          className={classes.header}
-          avatar={<Avatar className={classes.avatar}>{house.index}</Avatar>}
-          title={house.name}
-          subheader={"Blood: " + house.blood + "/2000"}
+      <div className={classes.bloodBar}>
+        <div
+          className={classes.remainingBloodBar}
+          style={{ width: `${(house.blood / 2000) * 100}%` }}
         />
       </div>
-      <div className={classes.mediaWrapper}>
-
-      <CardMedia className={classes.media} component="img" image={imagePath} />
-      </div>
+      <CardHeader
+        className={classes.header}
+        avatar={<Avatar className={classes.avatar}>{house.index}</Avatar>}
+        title={house.name}
+        subheader={"Blood: " + house.blood + "/2000"}
+      />
+      {!noImage && (
+        <div className={classes.mediaWrapper}>
+          <CardMedia
+            className={classes.media}
+            component="img"
+            image={imagePath}
+          />
+        </div>
+      )}
     </Card>
   );
 }

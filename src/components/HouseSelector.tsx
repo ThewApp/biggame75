@@ -8,23 +8,32 @@ import HouseCard from "./HouseCard";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: { marginBottom: theme.spacing(2) },
-    item: {},
+    item: {
+      position: "relative"
+    },
+    cardOverlay: {
+      position: "absolute",
+      width: `calc(100% - ${theme.spacing(1)}px)`,
+      height: `calc(100% - ${theme.spacing(1)}px)`,
+      borderRadius: theme.shape.borderRadius,
+      opacity: 0.6,
+      pointerEvents: "none",
+      zIndex: 10,
+      "&.active": {
+        backgroundColor: theme.palette.primary.main
+      },
+      "&.side": {
+        backgroundColor: theme.palette.primary.light
+      }
+    },
     card: {
       height: "100%",
       cursor: "pointer",
-      "&.active": {
-        backgroundColor: theme.palette.primary.light
-      },
       "&.disabled": {
         opacity: 0.3,
         cursor: "not-allowed"
-      },
-      "&.side": {
-        backgroundColor: theme.palette.secondary.light
       }
-    },
-    houseName: {},
-    houseBlood: {}
+    }
   })
 );
 
@@ -49,9 +58,8 @@ function HouseSelector(props: {
           key={house.index}
           className={classes.item}
         >
-          <HouseCard
-            house={house}
-            className={clsx(classes.card, {
+          <div
+            className={clsx(classes.cardOverlay, {
               active: house.index === props.selected,
               side:
                 props.selected &&
@@ -59,7 +67,13 @@ function HouseSelector(props: {
                 (house.index === props.selected - 1 ||
                   house.index === props.selected + 1 ||
                   (props.selected === 1 && house.index === length) ||
-                  (props.selected === length && house.index === 1)),
+                  (props.selected === length && house.index === 1))
+            })}
+          />
+          <HouseCard
+            noImage
+            house={house}
+            className={clsx(classes.card, {
               disabled: props.disabled.includes(house.index)
             })}
             tabIndex={!props.disabled.includes(house.index) ? 0 : undefined}
