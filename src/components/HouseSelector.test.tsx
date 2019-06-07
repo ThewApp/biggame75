@@ -35,12 +35,14 @@ test("renders many houses", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 2000
+      blood: 2000,
+      img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 1900
+      blood: 1900,
+      img: "lotso.jpg"
     }
   ]);
   const { getByText } = render(
@@ -63,12 +65,14 @@ test("selects house", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 2000
+      blood: 2000,
+      img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 1900
+      blood: 1900,
+      img: "lotso.jpg"
     }
   ]);
   const { getByText, rerender } = render(

@@ -12,9 +12,8 @@ import { db } from "../firebase";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {},
-    button: {
-      width: "100%"
-    }
+    button: {},
+    card: {}
   })
 );
 
@@ -106,16 +105,20 @@ function AttackLauncher(props: {
         </Grid>
         <Grid item xs={12} sm={4} md={12} lg={4}>
           <Typography variant="h5" gutterBottom>
-            Defender
-          </Typography>
-          <HouseCard house={{ ...defenderData, blood: defenderBlood }} />
-        </Grid>
-        <Grid item xs={12} sm={4} md={12} lg={4}>
-          <Typography variant="h5" gutterBottom>
             Left
           </Typography>
           <HouseCard
+            className={classes.card}
             house={{ ...leftDefenderData, blood: leftDefenderBlood }}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4} md={12} lg={4}>
+          <Typography variant="h5" gutterBottom>
+            Defender
+          </Typography>
+          <HouseCard
+            className={classes.card}
+            house={{ ...defenderData, blood: defenderBlood }}
           />
         </Grid>
         <Grid item xs={12} sm={4} md={12} lg={4}>
@@ -123,6 +126,7 @@ function AttackLauncher(props: {
             Right
           </Typography>
           <HouseCard
+            className={classes.card}
             house={{ ...rightDefenderData, blood: rightDefenderBlood }}
           />
         </Grid>
@@ -133,6 +137,7 @@ function AttackLauncher(props: {
             className={classes.button}
             onClick={doAttack}
             disabled={attacking}
+            fullWidth
           >
             {attacking ? "Attacking..." : "Attack Now"}
           </Button>

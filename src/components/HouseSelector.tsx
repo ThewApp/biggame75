@@ -16,8 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.primary.light
       },
       "&.disabled": {
-        backgroundColor: theme.palette.grey[300],
-        opacity: 0.7,
+        opacity: 0.3,
         cursor: "not-allowed"
       },
       "&.side": {
@@ -45,8 +44,8 @@ function HouseSelector(props: {
         <Grid
           item
           xs={4}
-          sm={3}
-          md={2}
+          md={3}
+          lg={2}
           key={house.index}
           className={classes.item}
         >

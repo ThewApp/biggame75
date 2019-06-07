@@ -2,7 +2,7 @@ import React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ItemsControl from "../components/ItemsControl";
-import HousesStatus from "../components/HousesStatus";
+import HousesControl from "../components/HousesControl";
 import { ItemsProvider } from "../contexts/Items";
 import { HousesProvider } from "../contexts/Houses";
 
@@ -24,11 +24,11 @@ function ControlPage() {
     <ItemsProvider>
       <HousesProvider>
         <Grid container className={classes.root}>
-          <Grid item sm={12} md={4} lg={3} className={classes.item}>
+          <Grid item xs={12} sm={6} md={4} lg={3} className={classes.item}>
             <ItemsControl />
           </Grid>
           <Grid item xs className={classes.item}>
-            <HousesStatus />
+            <HousesControl />
           </Grid>
         </Grid>
       </HousesProvider>

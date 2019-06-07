@@ -32,27 +32,32 @@ mockedUseHouses.mockReturnValue([
   {
     index: 1,
     name: "Minions",
-    blood: 2000
+    blood: 2000,
+    img: "minions.jpg"
   },
   {
     index: 2,
     name: "Lotso Bear",
-    blood: 2000
+    blood: 2000,
+    img: "lotso.jpg"
   },
   {
     index: 3,
     name: "Harley Quinn",
-    blood: 2000
+    blood: 2000,
+    img: "harley.jpg"
   },
   {
     index: 4,
     name: "Jerry",
-    blood: 2000
+    blood: 2000,
+    img: "jerry.jpg"
   },
   {
     index: 5,
     name: "Maleficent",
-    blood: 2000
+    blood: 2000,
+    img: "maleficent.jpg"
   }
 ]);
 mockedUseItems.mockReturnValue({
@@ -136,27 +141,32 @@ test("attack", async () => {
     {
       index: 1,
       name: "Minions",
-      blood: 1900
+      blood: 1900,
+      img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 2000
+      blood: 2000,
+      img: "lotso.jpg"
     },
     {
       index: 3,
       name: "Harley Quinn",
-      blood: 2000
+      blood: 2000,
+      img: "harley.jpg"
     },
     {
       index: 4,
       name: "Jerry",
-      blood: 1900
+      blood: 1900,
+      img: "jerry.jpg"
     },
     {
       index: 5,
       name: "Maleficent",
-      blood: 1850
+      blood: 1850,
+      img: "maleficent.jpg"
     }
   ]);
 

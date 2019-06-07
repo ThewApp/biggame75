@@ -27,12 +27,14 @@ test("render non-empty", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 100
+      blood: 2000,
+      img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 100
+      blood: 2000,
+      img: "lotso.jpg"
     }
   ]);
   const { getByText } = render(<HousesStatus />);
@@ -48,20 +50,22 @@ test("rerender non-empty", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 100
+      blood: 2000,
+      img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 100
+      blood: 2000,
+      img: "lotso.jpg"
     }
   ]);
   const { getByText, queryByText, rerender } = render(<HousesStatus />);
 
   getByText("Baan Status");
   expect(queryByText("Minions")).toBe(null);
-  
-  rerender(<HousesStatus />)
+
+  rerender(<HousesStatus />);
 
   expect(mockedUseHouses.mock.calls.length).toBe(2);
   getByText("Baan Status");
