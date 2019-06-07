@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function Items() {
+function ItemsControl() {
   const classes = useStyles();
 
   const itemsData = useItems();
@@ -39,4 +39,4 @@ function Items() {
   );
 }
 
-export default Items;
+export default ItemsControl;
