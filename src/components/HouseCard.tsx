@@ -21,15 +21,12 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
-      position: "relative"
+      justifyContent: "space-between",
     },
     bloodBar: {
-      position: "absolute",
       width: "100%",
       height: theme.spacing(1),
       backgroundColor: "pink",
-      top: 0
     },
     remainingBloodBar: {
       height: "100%",
@@ -146,16 +143,6 @@ function HouseCard({
   );
   return (
     <Card className={clsx(className, classes.root)} {...props}>
-      <div className={classes.bloodBar}>
-        <animated.div
-          className={classes.remainingBloodBar}
-          style={{
-            width: bloodSpring.number
-              .interpolate({ range: [0, 2000], output: [0, 100] })
-              .interpolate(o => `${o}%`)
-          }}
-        />
-      </div>
       <CardHeader
         avatar={<Avatar className={classes.avatar}>{house.index}</Avatar>}
         title={house.name}
@@ -170,6 +157,16 @@ function HouseCard({
           )
         }
       />
+      <div className={classes.bloodBar}>
+        <animated.div
+          className={classes.remainingBloodBar}
+          style={{
+            width: bloodSpring.number
+              .interpolate({ range: [0, 2000], output: [0, 100] })
+              .interpolate(o => `${o}%`)
+          }}
+        />
+      </div>
       {!noImage && (
         <div className={classes.mediaWrapper}>
           <CardMedia
