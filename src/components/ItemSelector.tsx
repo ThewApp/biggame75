@@ -52,6 +52,7 @@ function ItemSelector(props: {
             })}
           />
           <ItemCard
+            mask
             item={{ ...itemsData[key], name: key }}
             className={classes.card}
             tabIndex={itemsData[key].availability ? 0 : undefined}

@@ -53,15 +53,15 @@ test("renders many items", () => {
       img: "gun.jpg"
     }
   });
-  const { getByText, getAllByText } = render(
+  const { getByText, getAllByText, queryByText } = render(
     <ItemSelector selected={null} handleSelect={handleSelect} />
   );
 
   expect(mockedUseItems.mock.calls.length).toBe(1);
   expect(handleSelect.mock.calls.length).toBe(0);
   getByText("bomb");
-  getByText(/(?<!Side )Damage:\s+-100/);
-  expect(getAllByText(/Side Damage:\s+0/).length).toBe(2)
+  expect(queryByText(/(?<!Side )Damage:\s+-100/)).toBe(null);
+  expect(getAllByText(/Side Damage:\s+0/).length).toBe(1)
 });
 
 test("selects item", () => {
