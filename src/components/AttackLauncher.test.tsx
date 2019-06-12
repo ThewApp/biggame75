@@ -184,6 +184,7 @@ test("attack", async () => {
       get: (key: "attacker" | "timestamp") => {
         const doc = {
           attacker: 1,
+          item: "bomb",
           timestamp: {
             toMillis: () => Date.now()
           }
@@ -197,7 +198,7 @@ test("attack", async () => {
 
   getByText("Maleficent");
   await waitForElement(() => getByText("1700"));
-  getByText("Attacked by Baan 1");
+  getByText("Attacked by Baan 1 using bomb");
   expect(queryByText("1900")).toBe(null);
   getByText("Jerry");
   getByText("Minions");

@@ -101,7 +101,7 @@ function HouseCard({
     bloodRef.current = house.blood;
   });
 
-  const [attackedBy, setAttackedBy] = React.useState<string | null>(null);
+  const [attackedBy, setAttackedBy] = React.useState<{attacker: number, item: string} | null>(null);
 
   firestore()
     .collection("attacks")
@@ -113,7 +113,7 @@ function HouseCard({
       querySnapshot.forEach(doc => {
         if (Date.now() - doc.get("timestamp").toMillis() <= 5 * 1000) {
           // 5 seconds
-          setAttackedBy(String(doc.get("attacker")));
+          setAttackedBy({attacker: doc.get("attacker"), item: doc.get("item")});
         }
       });
     });
@@ -221,7 +221,7 @@ function HouseCard({
           {attackedBy && (
             <div className={classes.attackedOverlay}>
               <Typography variant="body2">
-                Attacked by Baan {attackedBy}
+                Attacked by Baan {attackedBy.attacker} using {attackedBy.item}
               </Typography>
             </div>
           )}

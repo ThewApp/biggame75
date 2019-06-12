@@ -196,6 +196,7 @@ test("show attacks status", () => {
       get: (key: "attacker" | "timestamp") => {
         const doc = {
           attacker: 5,
+          item: "bomb",
           timestamp: {
             toMillis: () => Date.now()
           }
@@ -210,5 +211,5 @@ test("show attacks status", () => {
   getByText("Control Baan");
   getByText("Minions");
   getByText("Lotso Bear");
-  return waitForElement(() => getByText("Attacked by Baan 5"));
+  return waitForElement(() => getByText("Attacked by Baan 5 using bomb"));
 });
