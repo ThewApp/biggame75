@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center"
     },
     itemImage: {
-      maxWidth: 130,
-      maxHeight: 130,
+      maxWidth: "15vh",
+      maxHeight: "15vh",
       objectFit: "contain"
     },
     itemDetails: {

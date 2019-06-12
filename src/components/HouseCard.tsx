@@ -27,11 +27,11 @@ const useStyles = makeStyles((theme: Theme) =>
     bloodBar: {
       width: "100%",
       height: theme.spacing(1),
-      backgroundColor: "pink"
+      backgroundColor: "hsl(3, 100%, 85%)"
     },
     remainingBloodBar: {
       height: "100%",
-      backgroundColor: "red"
+      backgroundColor: "hsl(3, 100%, 60%)"
     },
     avatar: {},
     inputRoot: {
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       objectFit: "contain",
-      maxHeight: 130
+      maxHeight: "15vh"
     }
   })
 );
@@ -264,7 +264,6 @@ function HouseCard({
             <Button
               disabled={savingDialog}
               onClick={handleCloseDialog}
-              color="primary"
             >
               Cancel
             </Button>

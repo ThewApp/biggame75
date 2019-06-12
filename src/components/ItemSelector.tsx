@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
       width: `calc(100% - ${theme.spacing(1)}px)`,
       height: `calc(100% - ${theme.spacing(1)}px)`,
       borderRadius: theme.shape.borderRadius,
-      opacity: 0.6,
       pointerEvents: "none",
       zIndex: 10,
       "&.active": {
-        backgroundColor: theme.palette.primary.main
+        borderTop: "solid 4px " + theme.palette.secondary.main,
+        backgroundColor: "hsla(64, 100%, 64%, 0.3)"
       }
     },
     card: {
