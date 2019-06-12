@@ -23,7 +23,7 @@ function HousesProvider(props: { children: React.ReactNode }) {
   React.useEffect(() => {
     return housesDB.orderBy("index").onSnapshot(function(querySnapshot) {
       // Initialize houses with defaultData.json if firebase collection is empty
-      if (querySnapshot.empty) {
+      if (querySnapshot.empty && !querySnapshot.metadata.fromCache) {
         defaultHousesData.forEach(house => {
           const key = String(house.index);
           housesDB.doc(key).set(house);

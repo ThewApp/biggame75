@@ -27,7 +27,7 @@ function ItemsProvider(props: { children: React.ReactNode }) {
   React.useEffect(() => {
     return itemsDB.orderBy("index").onSnapshot(function(querySnapshot) {
       // Initialize items with defaultData.json if firebase collection is empty
-      if (querySnapshot.empty) {
+      if (querySnapshot.empty && !querySnapshot.metadata.fromCache) {
         const keys = Object.keys(defaultItemsData);
         keys.forEach(key => {
           itemsDB.doc(key).set(defaultItemsData[key]);
