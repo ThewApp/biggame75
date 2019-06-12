@@ -8,7 +8,7 @@ import {
 import AttackLauncher from "./AttackLauncher";
 import { useHouses } from "../contexts/Houses";
 import { useItems } from "../contexts/Items";
-import { db } from "../firebase";
+import { firestore } from "../firebase";
 
 jest.mock("../contexts/Houses", () => ({
   useHouses: jest.fn()
@@ -18,15 +18,30 @@ jest.mock("../contexts/Items", () => ({
   useItems: jest.fn()
 }));
 
+const mockedAdd = jest.fn().mockResolvedValue(undefined);
+const mockedRunTransaction = jest.fn().mockResolvedValue(undefined);
+const mockedGet = jest.fn().mockResolvedValue([]);
+
 jest.mock("../firebase", () => ({
-  db: {
-    runTransaction: jest.fn().mockResolvedValue(undefined)
-  }
+  firestore: () => ({
+    runTransaction: mockedRunTransaction,
+    collection: () => ({
+      add: mockedAdd,
+      where: () => ({
+        orderBy: () => ({
+          limit: () => ({
+            get: mockedGet
+          })
+        })
+      })
+    })
+  })
 }));
+
+firestore.Timestamp = { fromMillis: jest.fn() } as any;
 
 const mockedUseHouses = useHouses as jest.Mock;
 const mockedUseItems = useItems as jest.Mock;
-const mockedRunTransaction = (db.runTransaction as unknown) as jest.Mock;
 
 mockedUseHouses.mockReturnValue([
   {
@@ -88,6 +103,8 @@ afterEach(() => {
   mockedUseHouses.mockClear();
   mockedUseItems.mockClear();
   mockedRunTransaction.mockClear();
+  mockedAdd.mockClear();
+  mockedGet.mockClear();
   cleanup();
 });
 
@@ -162,13 +179,28 @@ test("attack", async () => {
     }
   ]);
 
+  mockedGet.mockResolvedValueOnce([
+    {
+      get: (key: "attacker" | "timestamp") => {
+        const doc = {
+          attacker: 1,
+          timestamp: {
+            toMillis: () => Date.now()
+          }
+        };
+        return doc[key];
+      }
+    }
+  ]);
+
   rerender(<AttackLauncher attacker={1} defender={5} item={"bomb"} />);
 
   getByText("Maleficent");
   await waitForElement(() => getByText("1700"));
+  getByText("Attacked by Baan 1");
   expect(queryByText("1900")).toBe(null);
   getByText("Jerry");
   getByText("Minions");
-  getAllByText("1800");
+  expect(getAllByText("1800").length).toBe(2);
   getByText("Attack Now");
 });

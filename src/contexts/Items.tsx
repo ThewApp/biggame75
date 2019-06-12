@@ -1,9 +1,9 @@
 import React from "react";
-import { db } from "../firebase";
+import { firestore } from "../firebase";
 
 import defaultData from "../defaultData.json";
 
-const itemsDB = db.collection("items");
+const itemsDB = firestore().collection("items");
 const defaultItemsData: items = defaultData.items;
 
 const ItemsContext = React.createContext<items>({});

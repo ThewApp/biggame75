@@ -7,7 +7,7 @@ import CardAction from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import clsx from "clsx";
-import { db } from "../firebase";
+import { firestore } from "../firebase";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -78,7 +78,7 @@ function ItemCard({
   function toggleItem() {
     availabilityCache.current = item.availability;
     setToggling(true);
-    db.collection("items")
+    firestore().collection("items")
       .doc(item.name)
       .update({ availability: !item.availability })
       .then(() => {

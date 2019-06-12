@@ -17,13 +17,13 @@ jest.mock("../contexts/Items", () => ({
 const mockedUpdate = jest.fn().mockResolvedValue(undefined);
 
 jest.mock("../firebase", () => ({
-  db: {
+  firestore: () => ({
     collection: () => ({
       doc: () => ({
         update: mockedUpdate
       })
     })
-  }
+  })
 }));
 
 mockedUseItems.mockReturnValue({

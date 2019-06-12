@@ -10,23 +10,24 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { useSpring, animated } from "react-spring";
 import clsx from "clsx";
-import { db } from "../firebase";
+import { firestore } from "../firebase";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-between",
+      justifyContent: "space-between"
     },
     bloodBar: {
       width: "100%",
       height: theme.spacing(1),
-      backgroundColor: "pink",
+      backgroundColor: "pink"
     },
     remainingBloodBar: {
       height: "100%",
@@ -39,7 +40,24 @@ const useStyles = makeStyles((theme: Theme) =>
     mediaWrapper: {
       flexGrow: 1,
       display: "flex",
-      alignItems: "center"
+      alignItems: "center",
+      position: "relative"
+    },
+    attackedOverlay: {
+      position: "absolute",
+      width: "100%",
+      padding: theme.spacing(2),
+      color: theme.palette.common.white,
+      backgroundColor: theme.palette.primary.main,
+      animation: "$attackedOverlay .5s ease-in-out infinite alternate"
+    },
+    "@keyframes attackedOverlay": {
+      from: {
+        opacity: 0.8
+      },
+      to: {
+        opacity: 0.98
+      }
     },
     media: {
       objectFit: "contain",
@@ -83,13 +101,43 @@ function HouseCard({
     bloodRef.current = house.blood;
   });
 
+  const [attackedBy, setAttackedBy] = React.useState<string | null>(null);
+
+  firestore()
+    .collection("attacks")
+    .where("defender", "==", house.index)
+    .orderBy("timestamp", "desc")
+    .limit(1)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        if (Date.now() - doc.get("timestamp").toMillis() <= 5 * 1000) {
+          // 5 seconds
+          setAttackedBy(String(doc.get("attacker")));
+        }
+      });
+    });
+
+  React.useEffect(() => {
+    if (attackedBy !== null) {
+      const timeoutId = setTimeout(() => {
+        setAttackedBy(null);
+      }, 5 * 1000);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  });
+
   const bloodSpring = useSpring({
     number: newBlood || house.blood,
     from: {
-      number: bloodRef.current && typeof newBlood === "undefined" ? bloodRef.current : house.blood
+      number:
+        bloodRef.current && typeof newBlood === "undefined"
+          ? bloodRef.current
+          : house.blood
     },
-    config: { friction: 100, mass: 3 },
-    reset: typeof newBlood !== "undefined"
+    config: { friction: 100, mass: 2 }
   });
 
   function handleOpenDialog() {
@@ -118,7 +166,8 @@ function HouseCard({
       editedBlood! <= 2000
     ) {
       setSavingDialog(true);
-      db.collection("houses")
+      firestore()
+        .collection("houses")
         .doc(String(house.index))
         .update({ blood: editedBlood })
         .then(() => {
@@ -169,6 +218,13 @@ function HouseCard({
       </div>
       {!noImage && (
         <div className={classes.mediaWrapper}>
+          {attackedBy && (
+            <div className={classes.attackedOverlay}>
+              <Typography variant="body2">
+                Attacked by Baan {attackedBy}
+              </Typography>
+            </div>
+          )}
           <CardMedia
             className={classes.media}
             component="img"

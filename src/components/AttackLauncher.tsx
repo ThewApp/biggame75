@@ -7,7 +7,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { useHouses } from "../contexts/Houses";
 import { useItems } from "../contexts/Items";
 import HouseCard from "./HouseCard";
-import { db } from "../firebase";
+import { firestore } from "../firebase";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,40 +44,61 @@ function AttackLauncher(props: {
 
   function doAttack() {
     setAttacking(true);
-    db.runTransaction(async transaction => {
-      const itemDoc = db.collection("items").doc(String(props.item));
-      const defenderDoc = db.collection("houses").doc(String(props.defender));
-      const leftDefenderDoc = db
-        .collection("houses")
-        .doc(String(getLeft(props.defender!, housesData.length)));
-      const rightDefenderDoc = db
-        .collection("houses")
-        .doc(String(getRight(props.defender!, housesData.length)));
-      return transaction.get(itemDoc).then(async itemSnapshot => {
-        const itemDamage = itemSnapshot.data()!.damage;
-        const itemSideDamage = itemSnapshot.data()!.sideDamage;
-        let newDefenderBlood, newLeftBlood, newRightBlood;
-        await transaction.get(defenderDoc).then(defenderSnapshot => {
-          const currentBlood = defenderSnapshot.data()!.blood;
-          newDefenderBlood = Math.max(currentBlood - itemDamage, 0);
+    firestore()
+      .runTransaction(transaction => {
+        const itemDoc = firestore().collection("items").doc(String(props.item));
+        const defenderDoc = firestore().collection("houses").doc(String(props.defender));
+        const leftDefenderDoc = firestore()
+          .collection("houses")
+          .doc(String(getLeft(props.defender!, housesData.length)));
+        const rightDefenderDoc = firestore()
+          .collection("houses")
+          .doc(String(getRight(props.defender!, housesData.length)));
+        return transaction.get(itemDoc).then(itemSnapshot => {
+          const itemDamage = itemSnapshot.data()!.damage;
+          const itemSideDamage = itemSnapshot.data()!.sideDamage;
+          let newDefenderBlood: number,
+            newLeftBlood: number,
+            newRightBlood: number;
+          return transaction.get(defenderDoc).then(defenderSnapshot => {
+            const currentBlood = defenderSnapshot.data()!.blood;
+            newDefenderBlood = Math.max(currentBlood - itemDamage, 0);
+            return transaction
+              .get(leftDefenderDoc)
+              .then(leftDefenderSnapshot => {
+                const currentBlood = leftDefenderSnapshot.data()!.blood;
+                newLeftBlood = Math.max(currentBlood - itemSideDamage, 0);
+                return transaction
+                  .get(rightDefenderDoc)
+                  .then(rightDefenderSnapshot => {
+                    const currentBlood = rightDefenderSnapshot.data()!.blood;
+                    newRightBlood = Math.max(currentBlood - itemSideDamage, 0);
+                    transaction.update(itemDoc, {});
+                    transaction.update(defenderDoc, {
+                      blood: newDefenderBlood
+                    });
+                    transaction.update(leftDefenderDoc, {
+                      blood: newLeftBlood
+                    });
+                    transaction.update(rightDefenderDoc, {
+                      blood: newRightBlood
+                    });
+                  });
+              });
+          });
         });
-        await transaction.get(leftDefenderDoc).then(leftDefenderSnapshot => {
-          const currentBlood = leftDefenderSnapshot.data()!.blood;
-          newLeftBlood = Math.max(currentBlood - itemSideDamage, 0);
+      })
+      .then(() => {
+        firestore().collection("attacks").add({
+          attacker: props.attacker,
+          defender: props.defender,
+          item: props.item,
+          timestamp: firestore.Timestamp.fromMillis(Date.now())
         });
-        await transaction.get(rightDefenderDoc).then(rightDefenderSnapshot => {
-          const currentBlood = rightDefenderSnapshot.data()!.blood;
-          newRightBlood = Math.max(currentBlood - itemSideDamage, 0);
-        });
-        transaction.update(itemDoc, {});
-        transaction.update(defenderDoc, { blood: newDefenderBlood });
-        transaction.update(leftDefenderDoc, { blood: newLeftBlood });
-        transaction.update(rightDefenderDoc, { blood: newRightBlood });
-      });
-    }).then(() => {
-      setAttacking(false);
-      setSuccessSnackbar(true);
-    });
+        setAttacking(false);
+        setSuccessSnackbar(true);
+      })
+      .catch(reason => console.error(reason));
   }
 
   if (props.attacker && props.defender && props.item) {
@@ -111,6 +132,7 @@ function AttackLauncher(props: {
             className={classes.card}
             house={leftDefenderData}
             newBlood={leftDefenderBlood}
+            key={leftDefenderData.index}
           />
         </Grid>
         <Grid item xs={12} sm={4} md={12} lg={4}>
@@ -121,6 +143,7 @@ function AttackLauncher(props: {
             className={classes.card}
             house={defenderData}
             newBlood={defenderBlood}
+            key={defenderData.index}
           />
         </Grid>
         <Grid item xs={12} sm={4} md={12} lg={4}>
@@ -129,8 +152,9 @@ function AttackLauncher(props: {
           </Typography>
           <HouseCard
             className={classes.card}
-            house={rightDefenderData }
+            house={rightDefenderData}
             newBlood={rightDefenderBlood}
+            key={rightDefenderData.index}
           />
         </Grid>
         <Grid item xs={12}>

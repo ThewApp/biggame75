@@ -1,9 +1,9 @@
 import React from "react";
-import { db } from "../firebase";
+import { firestore } from "../firebase";
 
 import defaultData from "../defaultData.json";
 
-const housesDB = db.collection("houses");
+const housesDB = firestore().collection("houses");
 const defaultHousesData: houses = defaultData.houses;
 
 const HousesContext = React.createContext<houses>([]);

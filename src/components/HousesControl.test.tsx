@@ -16,15 +16,23 @@ jest.mock("../contexts/Houses", () => ({
 }));
 
 const mockedUpdate = jest.fn().mockResolvedValue(undefined);
+const mockedGet = jest.fn().mockResolvedValue([]);
 
 jest.mock("../firebase", () => ({
-  db: {
+  firestore: () => ({
     collection: () => ({
       doc: () => ({
         update: mockedUpdate
+      }),
+      where: () => ({
+        orderBy: () => ({
+          limit: () => ({
+            get: mockedGet
+          })
+        })
       })
     })
-  }
+  })
 }));
 
 mockedUseHouses.mockReturnValue([
@@ -63,6 +71,7 @@ mockedUseHouses.mockReturnValue([
 afterEach(() => {
   mockedUseHouses.mockClear();
   mockedUpdate.mockClear();
+  mockedGet.mockClear();
   cleanup();
 });
 
@@ -164,4 +173,42 @@ it("edits overrange blood", () => {
   fireEvent.click(getByText("Save"));
   expect(mockedUpdate.mock.calls.length).toBe(0);
   return waitForElementToBeRemoved(() => getByLabelText("Blood"));
+});
+
+test("show attacks status", () => {
+  mockedUseHouses.mockReturnValueOnce([
+    {
+      index: 1,
+      name: "Minions",
+      blood: 1800,
+      img: "minions.jpg"
+    },
+    {
+      index: 2,
+      name: "Lotso Bear",
+      blood: 2000,
+      img: "lotso.jpg"
+    }
+  ]);
+
+  mockedGet.mockResolvedValueOnce([
+    {
+      get: (key: "attacker" | "timestamp") => {
+        const doc = {
+          attacker: 5,
+          timestamp: {
+            toMillis: () => Date.now()
+          }
+        };
+        return doc[key];
+      }
+    }
+  ]);
+
+  const { getByText } = render(<HousesControl />);
+
+  getByText("Control Baan");
+  getByText("Minions");
+  getByText("Lotso Bear");
+  return waitForElement(() => getByText("Attacked by Baan 5"));
 });
