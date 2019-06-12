@@ -25,11 +25,12 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center"
+      justifyContent: "center",
+      alignItems: "center"
     },
     itemImage: {
-      maxWidth: "15vh",
-      maxHeight: "15vh",
+      maxWidth: "calc(15vh + 50px)",
+      maxHeight: "calc(15vh + 50px)",
       objectFit: "contain"
     },
     itemDetails: {

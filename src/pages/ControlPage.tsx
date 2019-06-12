@@ -24,7 +24,7 @@ function ControlPage() {
     <ItemsProvider>
       <HousesProvider>
         <Grid container className={classes.root}>
-          <Grid item xs={12} sm={6} md={4} lg={3} className={classes.item}>
+          <Grid item xs={12} sm={5} md={4} lg={3} className={classes.item}>
             <ItemsControl />
           </Grid>
           <Grid item xs className={classes.item}>

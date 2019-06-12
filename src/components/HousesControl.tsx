@@ -30,7 +30,7 @@ function HousesControl() {
         </Typography>
       </Grid>
       {housesData.map(house => (
-        <Grid item xs={12} md={6} lg={3} key={house.index}>
+        <Grid item xs={12} sm={6} md={4} lg={3} key={house.index}>
           <HouseCard editable house={house} className={classes.card} />
         </Grid>
       ))}
