@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: "hsla(64, 100%, 64%, 0.3)"
       },
       "&.side": {
-        backgroundColor: "hsla(64, 100%, 88%, 0.3)"
+        backgroundColor: "hsla(64, 100%, 80%, 0.3)"
       }
     },
     card: {
