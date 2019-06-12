@@ -12,8 +12,13 @@ import { firestore } from "../firebase";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {},
-    button: {},
-    card: {}
+    houseItem: {
+      display: "flex",
+      flexDirection: "column"
+    },
+    card: {
+      flexGrow: 1
+    }
   })
 );
 
@@ -124,7 +129,7 @@ function AttackLauncher(props: {
             Simulated Results
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={4} md={12} lg={4}>
+        <Grid item xs={12} sm={4} md={12} lg={4} className={classes.houseItem}>
           <Typography variant="h5" gutterBottom>
             Left
           </Typography>
@@ -135,7 +140,7 @@ function AttackLauncher(props: {
             key={leftDefenderData.index}
           />
         </Grid>
-        <Grid item xs={12} sm={4} md={12} lg={4}>
+        <Grid item xs={12} sm={4} md={12} lg={4} className={classes.houseItem}>
           <Typography variant="h5" gutterBottom>
             Defender
           </Typography>
@@ -146,7 +151,7 @@ function AttackLauncher(props: {
             key={defenderData.index}
           />
         </Grid>
-        <Grid item xs={12} sm={4} md={12} lg={4}>
+        <Grid item xs={12} sm={4} md={12} lg={4} className={classes.houseItem}>
           <Typography variant="h5" gutterBottom>
             Right
           </Typography>
@@ -161,7 +166,6 @@ function AttackLauncher(props: {
           <Button
             variant="contained"
             color="primary"
-            className={classes.button}
             onClick={doAttack}
             disabled={attacking}
             fullWidth
