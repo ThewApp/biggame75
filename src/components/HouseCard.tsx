@@ -101,22 +101,31 @@ function HouseCard({
     bloodRef.current = house.blood;
   });
 
-  const [attackedBy, setAttackedBy] = React.useState<{attacker: number, item: string} | null>(null);
+  const [attackedBy, setAttackedBy] = React.useState<{
+    attacker: number;
+    item: string;
+  } | null>(null);
 
-  firestore()
-    .collection("attacks")
-    .where("defender", "==", house.index)
-    .orderBy("timestamp", "desc")
-    .limit(1)
-    .get()
-    .then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        if (Date.now() - doc.get("timestamp").toMillis() <= 5 * 1000) {
-          // 5 seconds
-          setAttackedBy({attacker: doc.get("attacker"), item: doc.get("item")});
-        }
-      });
-    });
+  React.useEffect(() => {
+    if (!noImage) {
+      return firestore()
+        .collection("attacks")
+        .where("defender", "==", house.index)
+        .orderBy("timestamp", "desc")
+        .limit(1)
+        .onSnapshot(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            if (Date.now() - doc.get("timestamp").toMillis() <= 5 * 1000) {
+              // 5 seconds
+              setAttackedBy({
+                attacker: doc.get("attacker"),
+                item: doc.get("item")
+              });
+            }
+          });
+        });
+    }
+  }, [house.index, noImage]);
 
   React.useEffect(() => {
     if (attackedBy !== null) {
@@ -261,10 +270,7 @@ function HouseCard({
             />
           </DialogContent>
           <DialogActions>
-            <Button
-              disabled={savingDialog}
-              onClick={handleCloseDialog}
-            >
+            <Button disabled={savingDialog} onClick={handleCloseDialog}>
               Cancel
             </Button>
             <Button

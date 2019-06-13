@@ -20,7 +20,7 @@ jest.mock("../contexts/Items", () => ({
 
 const mockedAdd = jest.fn().mockResolvedValue(undefined);
 const mockedRunTransaction = jest.fn().mockResolvedValue(undefined);
-const mockedGet = jest.fn().mockResolvedValue([]);
+const mockedOnSnapshot = jest.fn();
 
 jest.mock("../firebase", () => ({
   firestore: () => ({
@@ -30,7 +30,7 @@ jest.mock("../firebase", () => ({
       where: () => ({
         orderBy: () => ({
           limit: () => ({
-            get: mockedGet
+            onSnapshot: mockedOnSnapshot
           })
         })
       })
@@ -104,7 +104,7 @@ afterEach(() => {
   mockedUseItems.mockClear();
   mockedRunTransaction.mockClear();
   mockedAdd.mockClear();
-  mockedGet.mockClear();
+  mockedOnSnapshot.mockClear();
   cleanup();
 });
 
@@ -179,9 +179,9 @@ test("attack", async () => {
     }
   ]);
 
-  mockedGet.mockResolvedValueOnce([
+  mockedOnSnapshot.mock.calls[0][0]([
     {
-      get: (key: "attacker" | "timestamp") => {
+      get: (key: "attacker" | "item" | "timestamp") => {
         const doc = {
           attacker: 1,
           item: "bomb",

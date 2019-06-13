@@ -9,19 +9,7 @@ jest.mock("../contexts/Houses", () => ({
 
 const mockedUseHouses = useHouses as jest.Mock;
 
-jest.mock("../firebase", () => ({
-  firestore: () => ({
-    collection: () => ({
-      where: () => ({
-        orderBy: () => ({
-          limit: () => ({
-            get: jest.fn().mockResolvedValue([])
-          })
-        })
-      })
-    })
-  })
-}));
+jest.mock("../firebase", () => ({}));
 
 afterEach(() => {
   mockedUseHouses.mockClear();

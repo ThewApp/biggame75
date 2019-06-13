@@ -8,7 +8,7 @@ jest.mock("../contexts/Houses", () => ({
 }));
 
 const mockedUseHouses = useHouses as jest.Mock;
-const mockedGet = jest.fn().mockResolvedValue([]);
+const mockedOnSnapshot = jest.fn();
 
 jest.mock("../firebase", () => ({
   firestore: () => ({
@@ -16,7 +16,7 @@ jest.mock("../firebase", () => ({
       where: () => ({
         orderBy: () => ({
           limit: () => ({
-            get: mockedGet
+            onSnapshot: mockedOnSnapshot
           })
         })
       })
@@ -26,7 +26,7 @@ jest.mock("../firebase", () => ({
 
 afterEach(() => {
   mockedUseHouses.mockClear();
-  mockedGet.mockClear();
+  mockedOnSnapshot.mockClear();
   cleanup();
 });
 
@@ -105,9 +105,11 @@ test("show attacks status", () => {
     }
   ]);
 
-  mockedGet.mockResolvedValueOnce([
+  const { getByText } = render(<HousesStatus />);
+
+  mockedOnSnapshot.mock.calls[0][0]([
     {
-      get: (key: "attacker" | "timestamp") => {
+      get: (key: "attacker" | "item" | "timestamp") => {
         const doc = {
           attacker: 5,
           item: "bomb",
@@ -119,8 +121,6 @@ test("show attacks status", () => {
       }
     }
   ]);
-
-  const { getByText } = render(<HousesStatus />);
 
   getByText("Baan Status");
   getByText("Minions");
