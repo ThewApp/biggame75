@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
       }
     },
     itemImageWrapper: {
-      flex: "0 2 130px",
+      flex: "0 2 auto",
       backgroundColor: "white",
       padding: theme.spacing(1),
       display: "flex",
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center"
     },
     itemImage: {
-      maxWidth: "calc(15vh + 50px)",
-      maxHeight: "calc(15vh + 50px)",
+      maxWidth: "calc(10vh + 50px)",
+      maxHeight: "calc(10vh + 50px)",
       objectFit: "contain"
     },
     itemDetails: {
