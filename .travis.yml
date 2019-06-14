@@ -20,4 +20,4 @@ deploy:
     on:
       branch: dev
       node_js: lts/*
-    message: echo "test"
+    message: $(echo "test")
