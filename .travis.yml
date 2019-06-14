@@ -12,6 +12,7 @@ deploy:
     on:
       branch: master
       node_js: lts/*
+    message: $(git describe)
   - skip_cleanup: true
     provider: firebase
     token:
@@ -20,4 +21,4 @@ deploy:
     on:
       branch: dev
       node_js: lts/*
-    message: $(echo "test")
+    message: $(git describe)
