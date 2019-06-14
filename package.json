@@ -1,19 +1,26 @@
 {
   "name": "biggame75",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.1",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
     "@types/jest": "24.0.13",
     "@types/node": "12.0.3",
     "@types/react": "16.8.19",
     "@types/react-dom": "16.8.4",
+    "@types/react-router-dom": "^4.3.4",
+    "firebase": "^6.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-spring": "^8.0.23",
     "typescript": "3.4.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently npm:react-start \"firebase serve\"",
+    "react-start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -32,5 +39,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@testing-library/react": "^8.0.1",
+    "concurrently": "^4.1.0",
+    "jest-dom": "^3.5.0"
+  },
+  "proxy": "http://localhost:5000"
 }

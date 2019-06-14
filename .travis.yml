@@ -1,5 +1,7 @@
 language: node_js
-node_js: lts/*
+node_js:
+  - lts/*
+  - node
 before_deploy: npm run build
 deploy:
   - skip_cleanup: true
@@ -9,6 +11,8 @@ deploy:
     project: $FIREBASE_PROJECT
     on:
       branch: master
+      node_js: lts/*
+    message: $(git describe)
   - skip_cleanup: true
     provider: firebase
     token:
@@ -16,3 +20,5 @@ deploy:
     project: $FIREBASE_PROJECT_STG
     on:
       branch: dev
+      node_js: lts/*
+    message: $(git describe)
