@@ -172,7 +172,7 @@ function HouseCard({
     if (
       typeof editedBlood === "number" &&
       editedBlood! >= 0 &&
-      editedBlood! <= 2000
+      editedBlood! <= 4000
     ) {
       setSavingDialog(true);
       firestore()
@@ -196,7 +196,7 @@ function HouseCard({
       <animated.span>
         {bloodSpring.number.interpolate(number => Math.round(number))}
       </animated.span>
-      /2000
+      /4000
     </>
   );
   return (
@@ -220,7 +220,7 @@ function HouseCard({
           className={classes.remainingBloodBar}
           style={{
             width: bloodSpring.number
-              .interpolate({ range: [0, 2000], output: [0, 100] })
+              .interpolate({ range: [0, 4000], output: [0, 100] })
               .interpolate(o => `${o}%`)
           }}
         />
@@ -266,7 +266,7 @@ function HouseCard({
               InputProps={{
                 className: classes.inputRoot
               }}
-              inputProps={{ min: "0", max: "2000" }} // eslint-disable-line react/jsx-no-duplicate-props
+              inputProps={{ min: "0", max: "4000" }} // eslint-disable-line react/jsx-no-duplicate-props
             />
           </DialogContent>
           <DialogActions>

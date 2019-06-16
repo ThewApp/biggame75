@@ -26,7 +26,7 @@
     },
     "short knife": {
       "index": 4,
-      "price": 2000,
+      "price": 4000,
       "damage": 50,
       "sideDamage": null,
       "availability": true,
@@ -37,73 +37,73 @@
     {
       "index": 1,
       "name": "Minions",
-      "blood": 2000,
+      "blood": 4000,
       "img": "minions.jpg"
     },
     {
       "index": 2,
       "name": "Lotso Bear",
-      "blood": 2000,
+      "blood": 4000,
       "img": "lotso.jpg"
     },
     {
       "index": 3,
       "name": "Harley Quinn",
-      "blood": 2000,
+      "blood": 4000,
       "img": "harley.jpg"
     },
     {
       "index": 4,
       "name": "Jerry",
-      "blood": 2000,
+      "blood": 4000,
       "img": "jerry.jpg"
     },
     {
       "index": 5,
       "name": "Maleficent",
-      "blood": 2000,
+      "blood": 4000,
       "img": "maleficent.jpg"
     },
     {
       "index": 6,
       "name": "Jack Sparrow",
-      "blood": 2000,
+      "blood": 4000,
       "img": "jack.jpg"
     },
     {
       "index": 7,
       "name": "Black Shadow",
-      "blood": 2000,
+      "blood": 4000,
       "img": "shadow.jpg"
     },
     {
       "index": 8,
       "name": "Lord Voldemort",
-      "blood": 2000,
+      "blood": 4000,
       "img": "voldemort.jpg"
     },
     {
       "index": 9,
       "name": "No Face",
-      "blood": 2000,
+      "blood": 4000,
       "img": "noFace.jpg"
     },
     {
       "index": 10,
       "name": "Wreck-It Ralph",
-      "blood": 2000,
+      "blood": 4000,
       "img": "wreckIt.jpg"
     },
     {
       "index": 11,
       "name": "Sergeant Keroro",
-      "blood": 2000,
+      "blood": 4000,
       "img": "keroro.jpg"
     },
     {
       "index": 12,
       "name": "Evil Queen",
-      "blood": 2000,
+      "blood": 4000,
       "img": "evilQueen.jpg"
     }
   ]
