@@ -53,7 +53,7 @@ mockedUseItems.mockReturnValue({
   },
   "short knife": {
     index: 4,
-    price: 2000,
+    price: 4000,
     damage: 50,
     sideDamage: null,
     availability: true,
@@ -116,7 +116,7 @@ it("enable first disabled item", async () => {
     },
     "short knife": {
       index: 4,
-      price: 2000,
+      price: 4000,
       damage: 50,
       sideDamage: null,
       availability: true,
@@ -161,7 +161,7 @@ it("disable second enabled item", async () => {
     },
     "short knife": {
       index: 4,
-      price: 2000,
+      price: 4000,
       damage: 50,
       sideDamage: null,
       availability: false,

@@ -43,13 +43,13 @@ test("render non-empty", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 2000,
+      blood: 4000,
       img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 2000,
+      blood: 4000,
       img: "lotso.jpg"
     }
   ]);
@@ -66,13 +66,13 @@ test("rerender non-empty", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 2000,
+      blood: 4000,
       img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 2000,
+      blood: 4000,
       img: "lotso.jpg"
     }
   ]);
@@ -100,7 +100,7 @@ test("show attacks status", () => {
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 2000,
+      blood: 4000,
       img: "lotso.jpg"
     }
   ]);

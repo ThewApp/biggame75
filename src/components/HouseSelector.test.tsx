@@ -37,7 +37,7 @@ test("renders many houses", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 2000,
+      blood: 4000,
       img: "minions.jpg"
     },
     {
@@ -67,7 +67,7 @@ test("selects house", () => {
     {
       index: 1,
       name: "Minions",
-      blood: 2000,
+      blood: 4000,
       img: "minions.jpg"
     },
     {

@@ -39,7 +39,7 @@ mockedUseHouses.mockReturnValue([
   {
     index: 1,
     name: "Minions",
-    blood: 2000,
+    blood: 4000,
     img: "minions.jpg"
   },
   {
@@ -57,13 +57,13 @@ mockedUseHouses.mockReturnValue([
   {
     index: 4,
     name: "Jerry",
-    blood: 2000,
+    blood: 4000,
     img: "jerry.jpg"
   },
   {
     index: 5,
     name: "Maleficent",
-    blood: 2000,
+    blood: 4000,
     img: "maleficent.jpg"
   }
 ]);
@@ -100,14 +100,14 @@ it("edits valid blood", async () => {
   fireEvent.click(editButtons[0]);
   expect((getByLabelText("Blood") as HTMLInputElement).value).toBe("");
   fireEvent.change(getByLabelText("Blood") as HTMLInputElement, {
-    target: { value: "1750" }
+    target: { value: "3750" }
   });
   fireEvent.click(getByText("Save"));
   mockedUseHouses.mockReturnValueOnce([
     {
       index: 1,
       name: "Minions",
-      blood: 1750,
+      blood: 3750,
       img: "minions.jpg"
     },
     {
@@ -125,20 +125,20 @@ it("edits valid blood", async () => {
     {
       index: 4,
       name: "Jerry",
-      blood: 2000,
+      blood: 4000,
       img: "jerry.jpg"
     },
     {
       index: 5,
       name: "Maleficent",
-      blood: 2000,
+      blood: 4000,
       img: "maleficent.jpg"
     }
   ]);
   expect(mockedUpdate.mock.calls.length).toBe(1);
-  expect(mockedUpdate.mock.calls[0][0]).toEqual({ blood: 1750 });
+  expect(mockedUpdate.mock.calls[0][0]).toEqual({ blood: 3750 });
   rerender(<HousesControl />);
-  await waitForElement(() => getByText("1750"));
+  await waitForElement(() => getByText("3750"));
 });
 
 it("edits blank blood", () => {
@@ -168,7 +168,7 @@ it("edits overrange blood", () => {
   fireEvent.click(editButtons[3]);
   expect((getByLabelText("Blood") as HTMLInputElement).value).toBe("");
   fireEvent.change(getByLabelText("Blood") as HTMLInputElement, {
-    target: { value: "2001" }
+    target: { value: "4001" }
   });
   fireEvent.click(getByText("Save"));
   expect(mockedUpdate.mock.calls.length).toBe(0);
@@ -186,7 +186,7 @@ test("show attacks status", () => {
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 2000,
+      blood: 4000,
       img: "lotso.jpg"
     }
   ]);

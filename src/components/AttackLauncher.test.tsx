@@ -47,31 +47,31 @@ mockedUseHouses.mockReturnValue([
   {
     index: 1,
     name: "Minions",
-    blood: 2000,
+    blood: 4000,
     img: "minions.jpg"
   },
   {
     index: 2,
     name: "Lotso Bear",
-    blood: 2000,
+    blood: 4000,
     img: "lotso.jpg"
   },
   {
     index: 3,
     name: "Harley Quinn",
-    blood: 2000,
+    blood: 4000,
     img: "harley.jpg"
   },
   {
     index: 4,
     name: "Jerry",
-    blood: 2000,
+    blood: 4000,
     img: "jerry.jpg"
   },
   {
     index: 5,
     name: "Maleficent",
-    blood: 2000,
+    blood: 4000,
     img: "maleficent.jpg"
   }
 ]);
@@ -126,7 +126,7 @@ test("render results", async () => {
   expect(mockedUseItems.mock.calls.length).toBe(1);
   expect(mockedRunTransaction.mock.calls.length).toBe(0);
   getByText("Maleficent");
-  await waitForElement(() => getByText("1900"));
+  await waitForElement(() => getByText("3900"));
   getByText("Jerry");
   getByText("Minions");
   getByText("Attack Now");
@@ -150,31 +150,31 @@ test("attack", async () => {
     {
       index: 1,
       name: "Minions",
-      blood: 1900,
+      blood: 3900,
       img: "minions.jpg"
     },
     {
       index: 2,
       name: "Lotso Bear",
-      blood: 2000,
+      blood: 4000,
       img: "lotso.jpg"
     },
     {
       index: 3,
       name: "Harley Quinn",
-      blood: 2000,
+      blood: 4000,
       img: "harley.jpg"
     },
     {
       index: 4,
       name: "Jerry",
-      blood: 1900,
+      blood: 3900,
       img: "jerry.jpg"
     },
     {
       index: 5,
       name: "Maleficent",
-      blood: 1850,
+      blood: 3850,
       img: "maleficent.jpg"
     }
   ]);
@@ -197,11 +197,11 @@ test("attack", async () => {
   rerender(<AttackLauncher attacker={1} defender={5} item={"bomb"} />);
 
   getByText("Maleficent");
-  await waitForElement(() => getByText("1700"));
+  await waitForElement(() => getByText("3700"));
   getByText("Attacked by Baan 1 using bomb");
-  expect(queryByText("1900")).toBe(null);
+  expect(queryByText("3900")).toBe(null);
   getByText("Jerry");
   getByText("Minions");
-  expect(getAllByText("1800").length).toBe(2);
+  expect(getAllByText("3800").length).toBe(2);
   getByText("Attack Now");
 });
